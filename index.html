@@ -3,19 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro</title>
+    <meta name="description" content="Entre no Controle Financeiro para acompanhar suas receitas e despesas.">
+    <title>Entrar | Controle Financeiro</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Controle Financeiro</h1>
-    <script src="js/script.js"></script>
-</body>
-</head>
-<body>
-    <h1>Controle Financeiro</h1>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a href="index.html" class="logo">
+                <span class="logo__icone" aria-hidden="true">R$</span>
+                <span>Controle Financeiro</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+            </button>
+            <nav id="menu-principal" class="menu" aria-label="Menu principal">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Entrar</a></li>
+                    <li><a href="cadastro.html">Criar conta</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container conteudo conteudo--centralizado">
+        <section class="cartao-form" aria-labelledby="titulo-login">
+            <h1 id="titulo-login">Entrar</h1>
+            <p class="cartao-form__subtitulo">Acesse sua conta para acompanhar suas finanças.</p>
+
+            <p class="aviso aviso--sucesso" id="aviso-cadastro" role="status" hidden></p>
+
+            <form id="form-login" novalidate>
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com" required aria-describedby="erro-email">
+                    <span class="campo__erro" id="erro-email"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" autocomplete="current-password" required aria-describedby="erro-senha">
+                    <span class="campo__erro" id="erro-senha"></span>
+                </div>
+
+                <button type="submit" class="botao botao--primario botao--bloco">Entrar</button>
+            </form>
+
+            <p class="cartao-form__rodape">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; 2026 Controle Financeiro &middot; Desenvolvimento Web I</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/login.js" defer></script>
 </body>
 </html>

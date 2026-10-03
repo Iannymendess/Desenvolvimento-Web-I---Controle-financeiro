@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crie sua conta no Controle Financeiro.">
+    <title>Criar conta | Controle Financeiro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a href="index.html" class="logo">
+                <span class="logo__icone" aria-hidden="true">R$</span>
+                <span>Controle Financeiro</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+            </button>
+            <nav id="menu-principal" class="menu" aria-label="Menu principal">
+                <ul>
+                    <li><a href="index.html">Entrar</a></li>
+                    <li><a href="cadastro.html" aria-current="page">Criar conta</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container conteudo conteudo--centralizado">
+        <section class="cartao-form" aria-labelledby="titulo-cadastro">
+            <h1 id="titulo-cadastro">Criar conta</h1>
+            <p class="cartao-form__subtitulo">Leva menos de um minuto.</p>
+
+            <form id="form-cadastro" novalidate>
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" autocomplete="name" required aria-describedby="erro-nome">
+                    <span class="campo__erro" id="erro-nome"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com" required aria-describedby="erro-email">
+                    <span class="campo__erro" id="erro-email"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" autocomplete="new-password" minlength="6" required aria-describedby="dica-senha erro-senha">
+                    <span class="campo__dica" id="dica-senha">Mínimo de 6 caracteres.</span>
+                    <span class="campo__erro" id="erro-senha"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="confirmar-senha">Confirmar senha</label>
+                    <input type="password" id="confirmar-senha" name="confirmar-senha" autocomplete="new-password" required aria-describedby="erro-confirmar-senha">
+                    <span class="campo__erro" id="erro-confirmar-senha"></span>
+                </div>
+
+                <button type="submit" class="botao botao--primario botao--bloco">Criar conta</button>
+            </form>
+
+            <p class="cartao-form__rodape">Já tem conta? <a href="index.html">Entrar</a></p>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; 2026 Controle Financeiro &middot; Desenvolvimento Web I</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/cadastro.js" defer></script>
+</body>
+</html>

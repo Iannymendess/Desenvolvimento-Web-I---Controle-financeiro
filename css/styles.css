@@ -1,3 +1,679 @@
-h1 {
-    color: green;
+/* =========================================================
+   Controle Financeiro — folha de estilos única
+   Ordem: variáveis > base > layout > componentes > responsivo
+   ========================================================= */
+
+/* ---------- Variáveis (cores, espaçamentos, tipografia) ---------- */
+:root {
+    --cor-primaria: #0f766e;
+    --cor-primaria-escura: #115e59;
+    --cor-primaria-clara: #ccfbf1;
+
+    --cor-receita: #15803d;
+    --cor-receita-fundo: #dcfce7;
+    --cor-despesa: #b91c1c;
+    --cor-despesa-fundo: #fee2e2;
+
+    --cor-texto: #1f2937;
+    --cor-texto-suave: #6b7280;
+    --cor-borda: #e5e7eb;
+    --cor-fundo: #f3f4f6;
+    --cor-superficie: #ffffff;
+
+    --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --espaco-1: 0.25rem;
+    --espaco-2: 0.5rem;
+    --espaco-3: 0.75rem;
+    --espaco-4: 1rem;
+    --espaco-5: 1.5rem;
+    --espaco-6: 2rem;
+
+    --raio: 0.5rem;
+    --sombra: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --largura-maxima: 1200px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fonte);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h1 { font-size: 1.75rem; line-height: 1.2; }
+h2 { font-size: 1.25rem; line-height: 1.3; }
+h3 { font-size: 0.875rem; font-weight: 600; }
+
+a {
+    color: var(--cor-primaria);
+}
+
+a:hover {
+    color: var(--cor-primaria-escura);
+}
+
+:focus-visible {
+    outline: 3px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+/* Esconde da tela, mas mantém para leitores de tela */
+.visualmente-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Layout ---------- */
+.container {
+    width: 100%;
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding: 0 var(--espaco-5);
+}
+
+.conteudo {
+    flex: 1; /* empurra o rodapé para o fim da página */
+    padding-top: var(--espaco-6);
+    padding-bottom: var(--espaco-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-5);
+}
+
+.conteudo--centralizado {
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-pagina {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--espaco-2) var(--espaco-4);
+}
+
+.titulo-pagina__saudacao {
+    color: var(--cor-texto-suave);
+}
+
+.layout-transacoes {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--espaco-5);
+    align-items: start;
+}
+
+/* ---------- Cabeçalho e menu ---------- */
+.cabecalho {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+.cabecalho__conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* no celular o menu aberto desce para a linha de baixo */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    height: 4rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: #fff;
+}
+
+.logo__icone {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--raio);
+    background: #fff;
+    color: var(--cor-primaria);
+    font-size: 0.875rem;
+}
+
+.menu ul {
+    display: flex;
+    gap: var(--espaco-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu a {
+    display: block;
+    padding: var(--espaco-2) var(--espaco-4);
+    border-radius: var(--raio);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.menu a[aria-current="page"] {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.menu-toggle {
+    display: none; /* aparece só no celular */
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--espaco-2);
+    background: none;
+    border: 0;
+    border-radius: var(--raio);
+    cursor: pointer;
+}
+
+.menu-toggle__barra {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__barra:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle__barra:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] .menu-toggle__barra:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+    padding: var(--espaco-5) 0;
+    border-top: 1px solid var(--cor-borda);
+    background: var(--cor-superficie);
+    color: var(--cor-texto-suave);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaco-3) var(--espaco-5);
+    border: 1px solid transparent;
+    border-radius: var(--raio);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.botao--primario {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+.botao--primario:hover {
+    background: var(--cor-primaria-escura);
+}
+
+.botao--secundario {
+    background: var(--cor-superficie);
+    border-color: var(--cor-borda);
+    color: var(--cor-texto);
+}
+
+.botao--secundario:hover {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+.botao--perigo {
+    background: var(--cor-superficie);
+    border-color: var(--cor-despesa-fundo);
+    color: var(--cor-despesa);
+}
+
+.botao--perigo:hover {
+    background: var(--cor-despesa-fundo);
+}
+
+.botao--pequeno {
+    padding: var(--espaco-1) var(--espaco-3);
+    font-size: 0.875rem;
+}
+
+.botao--bloco {
+    width: 100%;
+}
+
+/* ---------- Formulários ---------- */
+.cartao-form {
+    width: 100%;
+    max-width: 420px;
+    padding: var(--espaco-6);
+    background: var(--cor-superficie);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+.cartao-form__subtitulo {
+    margin: var(--espaco-2) 0 var(--espaco-5);
+    color: var(--cor-texto-suave);
+}
+
+.cartao-form__rodape {
+    margin-top: var(--espaco-5);
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-1);
+    margin: 0 0 var(--espaco-4);
+    padding: 0;
+    border: 0;
+    min-width: 0;
+}
+
+.campo label,
+.campo legend {
+    padding: 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.campo input,
+.campo select,
+.filtro select {
+    width: 100%;
+    padding: var(--espaco-3);
+    border: 1px solid #d1d5db;
+    border-radius: var(--raio);
+    background: var(--cor-superficie);
+    color: var(--cor-texto);
+    font: inherit;
+}
+
+.campo input:focus,
+.campo select:focus,
+.filtro select:focus {
+    border-color: var(--cor-primaria);
+    outline: 2px solid var(--cor-primaria-clara);
+    outline-offset: 0;
+}
+
+.campo input.invalido,
+.campo select.invalido {
+    border-color: var(--cor-despesa);
+    background: #fffafa;
+}
+
+.campo__dica {
+    font-size: 0.8125rem;
+    color: var(--cor-texto-suave);
+}
+
+.campo__erro {
+    font-size: 0.8125rem;
+    color: var(--cor-despesa);
+}
+
+.campo__erro:empty {
+    display: none;
+}
+
+.form-transacao {
+    margin-top: var(--espaco-4);
+}
+
+/* Botões de rádio estilizados como "pílulas" */
+.opcoes-tipo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaco-2);
+    margin-top: var(--espaco-1);
+}
+
+.opcao-tipo {
+    position: relative;
+    cursor: pointer;
+}
+
+.opcao-tipo input {
+    position: absolute;
+    opacity: 0;
+}
+
+.opcao-tipo span {
+    display: block;
+    padding: var(--espaco-2);
+    border: 1px solid #d1d5db;
+    border-radius: var(--raio);
+    text-align: center;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.opcao-tipo input:focus-visible + span {
+    outline: 3px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+.opcao-tipo--receita input:checked + span {
+    border-color: var(--cor-receita);
+    background: var(--cor-receita-fundo);
+    color: var(--cor-receita);
+}
+
+.opcao-tipo--despesa input:checked + span {
+    border-color: var(--cor-despesa);
+    background: var(--cor-despesa-fundo);
+    color: var(--cor-despesa);
+}
+
+fieldset.invalido .opcao-tipo span {
+    border-color: var(--cor-despesa);
+}
+
+.aviso {
+    padding: var(--espaco-3) var(--espaco-4);
+    border-radius: var(--raio);
+    font-size: 0.875rem;
+}
+
+.aviso--sucesso {
+    margin-bottom: var(--espaco-4);
+    background: var(--cor-receita-fundo);
+    color: var(--cor-receita);
+}
+
+.form-transacao .aviso {
+    margin: var(--espaco-3) 0 0;
+}
+
+.filtro {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.filtro select {
+    width: auto;
+    padding: var(--espaco-2) var(--espaco-3);
+}
+
+/* ---------- Painéis ---------- */
+.painel {
+    padding: var(--espaco-5);
+    background: var(--cor-superficie);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    min-width: 0; /* permite que a tabela role dentro do grid */
+}
+
+.painel__cabecalho {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-3);
+    margin-bottom: var(--espaco-4);
+}
+
+/* ---------- Cartões de resumo (dashboard) ---------- */
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaco-4);
+}
+
+.resumo__cartao {
+    padding: var(--espaco-5);
+    background: var(--cor-superficie);
+    border-radius: var(--raio);
+    border-top: 4px solid var(--cor-borda);
+    box-shadow: var(--sombra);
+}
+
+.resumo__cartao h3 {
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.resumo__valor {
+    margin-top: var(--espaco-2);
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.resumo__cartao--saldo   { border-top-color: var(--cor-primaria); }
+.resumo__cartao--receita { border-top-color: var(--cor-receita); }
+.resumo__cartao--despesa { border-top-color: var(--cor-despesa); }
+.resumo__cartao--receita .resumo__valor { color: var(--cor-receita); }
+.resumo__cartao--despesa .resumo__valor { color: var(--cor-despesa); }
+
+.negativo {
+    color: var(--cor-despesa);
+}
+
+/* ---------- Lista das últimas transações ---------- */
+.lista-transacoes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item-transacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-4);
+    padding: var(--espaco-3) 0 var(--espaco-3) var(--espaco-3);
+    border-bottom: 1px solid var(--cor-borda);
+    border-left: 3px solid transparent;
+}
+
+.item-transacao:last-child {
+    border-bottom: 0;
+}
+
+.item-transacao--receita { border-left-color: var(--cor-receita); }
+.item-transacao--despesa { border-left-color: var(--cor-despesa); }
+
+.item-transacao__descricao {
+    font-weight: 600;
+}
+
+.item-transacao__detalhes {
+    font-size: 0.875rem;
+    color: var(--cor-texto-suave);
+}
+
+.item-transacao__valor {
+    font-weight: 700;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.item-transacao--receita .item-transacao__valor { color: var(--cor-receita); }
+.item-transacao--despesa .item-transacao__valor { color: var(--cor-despesa); }
+
+.vazio {
+    padding: var(--espaco-5) 0;
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+/* ---------- Tabela de transações ---------- */
+.tabela-rolagem {
+    position: relative; /* mantém elementos "absolute" da tabela dentro da rolagem */
+    overflow-x: auto; /* no celular a tabela rola na horizontal */
+}
+
+.tabela {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.tabela th,
+.tabela td {
+    padding: var(--espaco-3);
+    border-bottom: 1px solid var(--cor-borda);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.tabela th {
+    font-size: 0.8125rem;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tabela tbody tr:hover {
+    background: var(--cor-fundo);
+}
+
+.tabela__numero {
+    text-align: right !important;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.tabela__acoes {
+    text-align: right !important;
+}
+
+.tabela__vazio {
+    padding: var(--espaco-6) !important;
+    text-align: center !important;
+    color: var(--cor-texto-suave);
+}
+
+.valor--receita { color: var(--cor-receita); }
+.valor--despesa { color: var(--cor-despesa); }
+
+.etiqueta {
+    display: inline-block;
+    padding: 0.125rem var(--espaco-2);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.etiqueta--receita { background: var(--cor-receita-fundo); color: var(--cor-receita); }
+.etiqueta--despesa { background: var(--cor-despesa-fundo); color: var(--cor-despesa); }
+
+/* =========================================================
+   Responsividade
+   ========================================================= */
+
+/* Notebook pequeno e tablet deitado (até 1024px) */
+@media (max-width: 1024px) {
+    .layout-transacoes {
+        grid-template-columns: 1fr; /* formulário em cima, tabela embaixo */
+    }
+}
+
+/* Tablet (até 900px) */
+@media (max-width: 900px) {
+    .resumo {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .resumo__cartao--saldo {
+        grid-column: 1 / -1; /* saldo ocupa a linha inteira */
+    }
+}
+
+/* Celular (até 600px) */
+@media (max-width: 600px) {
+    .container {
+        padding: 0 var(--espaco-4);
+    }
+
+    .conteudo {
+        padding-top: var(--espaco-5);
+        padding-bottom: var(--espaco-5);
+    }
+
+    h1 { font-size: 1.5rem; }
+
+    /* Menu vira "hambúrguer" */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+        padding-bottom: var(--espaco-3);
+    }
+
+    .menu--aberto {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    /* Cartões empilhados */
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .resumo__valor {
+        font-size: 1.5rem;
+    }
+
+    .cartao-form {
+        padding: var(--espaco-5);
+    }
+
+    .painel {
+        padding: var(--espaco-4);
+    }
 }

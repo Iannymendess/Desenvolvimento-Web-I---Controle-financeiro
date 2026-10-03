@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resumo do seu saldo, receitas e despesas.">
+    <title>Dashboard | Controle Financeiro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a href="dashboard.html" class="logo">
+                <span class="logo__icone" aria-hidden="true">R$</span>
+                <span>Controle Financeiro</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+            </button>
+            <nav id="menu-principal" class="menu" aria-label="Menu principal">
+                <ul>
+                    <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+                    <li><a href="transacoes.html">Transações</a></li>
+                    <li><a href="index.html" id="link-sair">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container conteudo">
+        <div class="titulo-pagina">
+            <h1>Dashboard</h1>
+            <p class="titulo-pagina__saudacao" id="saudacao">Olá!</p>
+        </div>
+
+        <section aria-labelledby="titulo-resumo">
+            <h2 id="titulo-resumo" class="visualmente-oculto">Resumo financeiro</h2>
+            <div class="resumo">
+                <article class="resumo__cartao resumo__cartao--saldo">
+                    <h3>Saldo atual</h3>
+                    <p class="resumo__valor" id="valor-saldo">R$ 0,00</p>
+                </article>
+                <article class="resumo__cartao resumo__cartao--receita">
+                    <h3>Receitas</h3>
+                    <p class="resumo__valor" id="valor-receitas">R$ 0,00</p>
+                </article>
+                <article class="resumo__cartao resumo__cartao--despesa">
+                    <h3>Despesas</h3>
+                    <p class="resumo__valor" id="valor-despesas">R$ 0,00</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="painel" aria-labelledby="titulo-ultimas">
+            <div class="painel__cabecalho">
+                <h2 id="titulo-ultimas">Últimas transações</h2>
+                <a href="transacoes.html" class="botao botao--secundario">Ver todas</a>
+            </div>
+            <ul class="lista-transacoes" id="ultimas-transacoes"></ul>
+            <p class="vazio" id="ultimas-vazio" hidden>
+                Nenhuma transação ainda. <a href="transacoes.html">Adicione a primeira</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; 2026 Controle Financeiro &middot; Desenvolvimento Web I</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+</body>
+</html>

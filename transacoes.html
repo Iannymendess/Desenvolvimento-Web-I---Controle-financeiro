@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adicione, filtre e exclua suas receitas e despesas.">
+    <title>Transações | Controle Financeiro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="container cabecalho__conteudo">
+            <a href="dashboard.html" class="logo">
+                <span class="logo__icone" aria-hidden="true">R$</span>
+                <span>Controle Financeiro</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+                <span class="menu-toggle__barra"></span>
+            </button>
+            <nav id="menu-principal" class="menu" aria-label="Menu principal">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="transacoes.html" aria-current="page">Transações</a></li>
+                    <li><a href="index.html" id="link-sair">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container conteudo">
+        <div class="titulo-pagina">
+            <h1>Transações</h1>
+            <p class="titulo-pagina__saudacao">
+                Saldo atual: <strong class="saldo-inline" id="valor-saldo">R$ 0,00</strong>
+            </p>
+        </div>
+
+        <div class="layout-transacoes">
+            <section class="painel" aria-labelledby="titulo-nova">
+                <h2 id="titulo-nova">Nova transação</h2>
+
+                <form id="form-transacao" class="form-transacao" novalidate>
+                    <div class="campo">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" id="descricao" name="descricao" maxlength="60" placeholder="Ex.: Mercado" required aria-describedby="erro-descricao">
+                        <span class="campo__erro" id="erro-descricao"></span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="valor">Valor (R$)</label>
+                        <input type="number" id="valor" name="valor" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00" required aria-describedby="erro-valor">
+                        <span class="campo__erro" id="erro-valor"></span>
+                    </div>
+
+                    <div class="campo">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data" required aria-describedby="erro-data">
+                        <span class="campo__erro" id="erro-data"></span>
+                    </div>
+
+                    <fieldset class="campo" id="tipo" aria-describedby="erro-tipo">
+                        <legend>Tipo</legend>
+                        <div class="opcoes-tipo">
+                            <label class="opcao-tipo opcao-tipo--receita">
+                                <input type="radio" name="tipo" value="receita" id="tipo-receita">
+                                <span>Receita</span>
+                            </label>
+                            <label class="opcao-tipo opcao-tipo--despesa">
+                                <input type="radio" name="tipo" value="despesa" id="tipo-despesa">
+                                <span>Despesa</span>
+                            </label>
+                        </div>
+                        <span class="campo__erro" id="erro-tipo"></span>
+                    </fieldset>
+
+                    <div class="campo">
+                        <label for="categoria">Categoria</label>
+                        <select id="categoria" name="categoria" required aria-describedby="erro-categoria">
+                            <option value="">Selecione...</option>
+                            <option>Alimentação</option>
+                            <option>Transporte</option>
+                            <option>Moradia</option>
+                            <option>Lazer</option>
+                            <option>Saúde</option>
+                            <option>Salário</option>
+                            <option>Outros</option>
+                        </select>
+                        <span class="campo__erro" id="erro-categoria"></span>
+                    </div>
+
+                    <button type="submit" class="botao botao--primario botao--bloco">Adicionar</button>
+                    <p class="aviso aviso--sucesso" id="aviso-transacao" role="status" hidden></p>
+                </form>
+            </section>
+
+            <section class="painel" aria-labelledby="titulo-lista">
+                <div class="painel__cabecalho">
+                    <h2 id="titulo-lista">Histórico</h2>
+                    <div class="filtro">
+                        <label for="filtro-tipo">Mostrar</label>
+                        <select id="filtro-tipo">
+                            <option value="todas">Todas</option>
+                            <option value="receita">Receitas</option>
+                            <option value="despesa">Despesas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tabela-rolagem">
+                    <table class="tabela">
+                        <caption class="visualmente-oculto">Lista de transações</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col" class="tabela__numero">Valor</th>
+                                <th scope="col"><span class="visualmente-oculto">Ações</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpo-tabela"></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p>&copy; 2026 Controle Financeiro &middot; Desenvolvimento Web I</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+    <script src="js/transacoes.js" defer></script>
+</body>
+</html>
