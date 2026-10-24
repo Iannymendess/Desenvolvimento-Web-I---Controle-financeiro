@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Controle Financeiro</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Controle Financeiro</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="transacoes.html">Transações</a>
+    </nav>
+  </header>
+  <main>
+    <section aria-labelledby="titulo">
+      <h2 id="titulo">Dashboard</h2>
+      <div class="cartoes">
+        <article class="cartao"><h3>Saldo atual</h3><p id="saldo">R$ 0,00</p></article>
+        <article class="cartao"><h3>Total de receitas</h3><p id="receitas">R$ 0,00</p></article>
+        <article class="cartao"><h3>Total de despesas</h3><p id="despesas">R$ 0,00</p></article>
+      </div>
+    </section>
+    <section aria-labelledby="ultimas">
+      <h2 id="ultimas">Últimas 5 transações</h2>
+      <ul id="ultimas-transacoes" class="lista-transacoes"></ul>
+      <a href="transacoes.html">Gerenciar transações</a>
+    </section>
+  </main>
+  <footer><p>Controle Financeiro - Desenvolvimento Web I</p></footer>
+</body>
+</html>

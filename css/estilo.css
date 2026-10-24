@@ -1,0 +1,42 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; color: #222; background: #f4f4f4; }
+header { background: #304b61; color: white; padding: 20px; }
+header h1 { margin: 0 0 16px; font-size: 26px; }
+nav { display: flex; flex-wrap: wrap; gap: 16px; }
+nav a { color: white; }
+nav a[aria-current="page"] { font-weight: bold; }
+main { max-width: 1000px; margin: 24px auto; padding: 0 16px; min-height: 65vh; }
+section { background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 24px; }
+h2 { margin-top: 0; font-size: 22px; }
+h3 { font-size: 17px; margin-top: 0; }
+a { color: #244c70; }
+.formulario-acesso { max-width: 440px; margin: 0 auto 24px; }
+form { max-width: 500px; }
+label { display: block; margin: 14px 0 6px; }
+input, select, button { font: inherit; padding: 10px; border: 1px solid #999; border-radius: 3px; }
+input, form select { width: 100%; }
+button { background: #304b61; color: white; border-color: #304b61; cursor: pointer; }
+button:hover { background: #20374a; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #c98700; outline-offset: 2px; }
+.mensagem { color: #a32121; min-height: 20px; }
+.sucesso { color: #216036; }
+.observacao { font-size: 14px; color: #555; }
+.cartoes { display: flex; gap: 16px; }
+.cartao { flex: 1; background: #f4f4f4; border: 1px solid #ddd; padding: 16px; }
+.cartao p { margin: 0; font-size: 24px; overflow-wrap: anywhere; }
+.lista-transacoes { padding-left: 22px; }
+.lista-transacoes li { margin-bottom: 12px; overflow-wrap: anywhere; }
+.tabela-container { overflow-x: auto; margin-top: 18px; }
+table { width: 100%; border-collapse: collapse; min-width: 650px; }
+caption { text-align: left; padding-bottom: 10px; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; overflow-wrap: anywhere; max-width: 280px; }
+th { background: #eee; }
+.excluir { background: #a33333; border-color: #a33333; padding: 7px 10px; }
+.excluir:hover { background: #7d2525; }
+footer { text-align: center; padding: 16px; background: #e5e5e5; font-size: 14px; }
+@media (max-width: 600px) {
+  .cartoes { flex-direction: column; }
+  header { padding: 16px; }
+  nav { gap: 12px; }
+  section { padding: 16px; }
+}

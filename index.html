@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Controle Financeiro</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/script.js" defer></script>
 </head>
 <body>
+  <header>
     <h1>Controle Financeiro</h1>
-    <script src="js/script.js"></script>
-</body>
-</head>
-<body>
-    <h1>Controle Financeiro</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="transacoes.html">Transações</a>
+    </nav>
+  </header>
+  <main>
+    <section class="formulario-acesso" aria-labelledby="titulo">
+      <h2 id="titulo">Login</h2>
+      <p>Entre para acompanhar suas receitas e despesas.</p>
+      <form id="form-login" novalidate>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+        <p class="mensagem" id="mensagem" role="alert"></p>
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Não tem conta? <a href="cadastro.html">Faça seu cadastro</a>.</p>
+      <p class="observacao">Nesta entrega, o login é simulado.</p>
+    </section>
+  </main>
+  <footer><p>Controle Financeiro - Desenvolvimento Web I</p></footer>
 </body>
 </html>

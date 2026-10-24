@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Controle Financeiro</title>
+  <link rel="stylesheet" href="css/estilo.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Controle Financeiro</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="transacoes.html">Transações</a>
+    </nav>
+  </header>
+  <main>
+    <section class="formulario-acesso" aria-labelledby="titulo">
+      <h2 id="titulo">Cadastro</h2>
+      <form id="form-cadastro" novalidate>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" autocomplete="name" required>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+        <label for="senha">Senha (mínimo de 6 caracteres)</label>
+        <input type="password" id="senha" name="senha" autocomplete="new-password" minlength="6" required>
+        <label for="confirmacao">Confirme a senha</label>
+        <input type="password" id="confirmacao" name="confirmacao" autocomplete="new-password" required>
+        <p class="mensagem" id="mensagem" role="alert"></p>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p><a href="index.html">Voltar ao login</a></p>
+    </section>
+  </main>
+  <footer><p>Controle Financeiro - Desenvolvimento Web I</p></footer>
+</body>
+</html>
