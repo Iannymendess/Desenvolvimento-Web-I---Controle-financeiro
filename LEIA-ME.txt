@@ -1,46 +1,27 @@
 CONTROLE FINANCEIRO - DESENVOLVIMENTO WEB I
 
-Primeira entrega: lado cliente (HTML, CSS e JavaScript).
+Sistema Web completo (Cliente + Servidor Node.js/Express + Banco SQLite).
 
 COMO EXECUTAR
 1. Abra um terminal nesta pasta.
-2. Execute: python -m http.server 8000
-3. Acesse http://localhost:8000 no navegador.
-4. Para encerrar o servidor, pressione Ctrl+C no terminal.
-
-Também pode usar a extensão Live Server do VS Code, abrindo index.html.
-Use o mesmo endereço e porta para manter acesso aos dados salvos.
+2. Caso ainda não tenha instalado as dependências, execute:
+   npm install
+3. Inicie o servidor:
+   node server.js
+4. Acesse http://localhost:3000 no navegador.
+5. Para encerrar o servidor, pressione Ctrl+C no terminal.
 
 COMO USAR
-- Login: informe um e-mail válido e qualquer senha preenchida.
-- Cadastro: preencha nome, e-mail e duas senhas iguais de pelo menos 6 caracteres.
-- Transações: adicione receitas e despesas, filtre por tipo ou exclua registros.
-- Dashboard: confira os totais e as cinco transações mais recentes pela data.
+- Cadastro: crie um usuário com nome, e-mail e senha (mínimo de 6 caracteres).
+- Login: entre com o e-mail e a senha cadastrados.
+- Transações: adicione, edite, filtre por tipo ou exclua receitas e despesas.
+- Dashboard: confira saldo, totais e as cinco transações mais recentes por data.
 
-ARQUIVOS
-index.html: login simulado.
-cadastro.html: formulário de cadastro com validação.
-dashboard.html: saldo, receitas, despesas e últimas transações.
-transacoes.html: formulário, filtro e tabela de transações.
-css/estilo.css: estilos compartilhados e regras para celular.
-js/script.js: validação, alterações na tela e persistência.
-
-DADOS
-Transações ficam no localStorage, na chave controleFinanceiro.transacoes.
-Cada registro contém id, descricao, valor, data, tipo e categoria.
-O valor é um número e a data é armazenada no formato AAAA-MM-DD.
-As categorias são as sete categorias fixas do escopo.
-Limpar os dados do navegador apaga os registros.
-
-O login e o cadastro são simulados nesta entrega. Não há servidor de
-aplicação, banco de dados ou autenticação real. Senhas não são salvas.
-Os registros são compartilhados pelas telas no mesmo navegador e endereço.
-
-CONFERÊNCIA MANUAL
-- Tente enviar os formulários vazios e conferir as mensagens.
-- Tente cadastrar senhas diferentes e uma senha com menos de 6 caracteres.
-- Cadastre uma receita de 100 e uma despesa de 30: o saldo deve ser R$ 70,00.
-- Tente salvar valor zero e uma data futura: devem ser rejeitados.
-- Filtre por receitas e despesas, recarregue a página e exclua registros.
-- Adicione mais de cinco registros e confira o limite no dashboard.
-- Reduza a janela: os cartões empilham e a tabela permite rolagem horizontal.
+ARQUIVOS PRINCIPAIS
+- server.js: servidor Express, middlewares e entrega das páginas.
+- database/db.js: conexão com SQLite (financeiro.db) e criação das tabelas usuarios e transacoes.
+- routes/usuarios.js: rotas de cadastro (POST /api/usuarios) e login (POST /api/login).
+- routes/transacoes.js: rotas CRUD de transações (GET, POST, PUT, DELETE /api/transacoes).
+- index.html, cadastro.html, dashboard.html, transacoes.html: páginas HTML semânticas.
+- css/estilo.css: layout responsivo mobile-first com CSS Grid, Flexbox e media queries.
+- js/script.js: manipulação do DOM, validações e chamadas fetch para a API.
